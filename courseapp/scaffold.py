@@ -16,7 +16,7 @@ TOKEN_COURSEAPP_REF = "__COURSEAPP_REF__"
 
 # What the generated public site's requirements.txt pins for CI. The repo isn't
 # pushed yet, so this carries an <OWNER> placeholder the README explains.
-DEFAULT_COURSEAPP_REF = "courseapp @ git+https://github.com/<OWNER>/courseapp@main"
+DEFAULT_COURSEAPP_REF = "courseapp @ git+https://github.com/ontoligent/courseapp@main"
 
 
 def _templates():
