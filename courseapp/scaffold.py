@@ -136,11 +136,14 @@ def _create_vault_venv(vault, vault_req):
     else:
         print("   • creating venv...")
         subprocess.run([sys.executable, "-m", "venv", venv_dir], check=True)
-    pip = os.path.join(venv_dir, "bin", "pip")
+    # venv layout differs by OS: bin/ on macOS/Linux, Scripts/ on Windows.
+    # Invoke pip via the venv's interpreter so it resolves on every platform.
+    bindir = "Scripts" if os.name == "nt" else "bin"
+    venv_python = os.path.join(venv_dir, bindir, "python")
     print("   • installing authoring requirements (this is slow)...")
     try:
-        subprocess.run([pip, "install", "-r", vault_req], check=True)
+        subprocess.run([venv_python, "-m", "pip", "install", "-r", vault_req], check=True)
         print("   • authoring environment ready for JupyMD")
     except subprocess.CalledProcessError as e:
         print(f"   ⚠️  pip install failed ({e}); run manually:\n"
-              f"        {pip} install -r {vault_req}")
+              f"        {venv_python} -m pip install -r {vault_req}")
