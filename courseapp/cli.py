@@ -38,13 +38,17 @@ def main():
             print("❌ Error: Active mkdocs.yml layout map cannot be found here.")
             sys.exit(1)
         print("🚀 Launching dev server on http://127.0.0.1:8000...")
-        subprocess.run(["mkdocs", "serve"])
+        # Invoke mkdocs from courseapp's own interpreter: in the fat/pipx
+        # install mkdocs lives in the pipx venv, not on the global PATH.
+        subprocess.run([sys.executable, "-m", "mkdocs", "serve"])
     elif args.command == "deploy":
         if not os.path.exists("mkdocs.yml"):
             print("❌ Error: Active mkdocs.yml layout map cannot be found here.")
             sys.exit(1)
         print("🚀 Building and deploying to GitHub Pages...")
-        subprocess.run(["mkdocs", "gh-deploy", "--force"])
+        # Same as serve: use courseapp's interpreter so mkdocs resolves from
+        # the pipx venv rather than requiring it on the global PATH.
+        subprocess.run([sys.executable, "-m", "mkdocs", "gh-deploy", "--force"])
     else:
         parser.print_help()
 
