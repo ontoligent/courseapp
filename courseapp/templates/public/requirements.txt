@@ -1,0 +1,4 @@
+# CI installs the courseapp tool (the MkDocs toolchain comes in transitively).
+# Replace <OWNER> with your GitHub user/org once the courseapp repo is pushed,
+# so GitHub Actions can install it. Local builds use your pipx-installed courseapp.
+__COURSEAPP_REF__

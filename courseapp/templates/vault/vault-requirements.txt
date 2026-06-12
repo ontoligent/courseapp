@@ -1,0 +1,9 @@
+# Jupyter authoring environment for the Obsidian JupyMD plugin.
+# A starting point — add the data-science libraries each course needs.
+jupytext
+ipykernel
+nbformat
+matplotlib
+numpy
+pandas
+pillow
