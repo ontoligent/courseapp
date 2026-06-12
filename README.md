@@ -172,15 +172,10 @@ Two repos with **opposite visibility**: the vault is private, the site is public
 
 The vault holds unpublished notes, so its repo **must be private**.
 
-First add a `.gitignore` so the authoring venv and OS junk aren't committed:
+`create` already initialized the vault as a git repo (with `--git-vault`) and wrote a `.gitignore` that excludes the authoring `.venv/`, `.DS_Store`, and per-machine Obsidian state. So just commit:
 
 ```bash
 cd ~/Repos/Courses/my-course/vault
-cat > .gitignore <<'EOF'
-.venv/
-.DS_Store
-.obsidian/workspace*.json
-EOF
 git add -A
 git commit -m "Initial vault"
 ```

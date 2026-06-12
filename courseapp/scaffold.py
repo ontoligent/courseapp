@@ -100,6 +100,10 @@ def create_course(args):
     vault_req = os.path.join(vault, "vault-requirements.txt")
     _write(vault_req, _render("vault/vault-requirements.txt", {}))
 
+    # Keep the authoring venv and per-machine Obsidian state out of git
+    # (matters once the vault is a repo — see --git-vault below).
+    _write(os.path.join(vault, ".gitignore"), _render("vault/gitignore", {}))
+
     if getattr(args, "git_vault", False):
         _git_init(vault, "vault")
 
